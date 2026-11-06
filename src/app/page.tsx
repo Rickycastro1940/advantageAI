@@ -1,133 +1,57 @@
 import { Button, Container, CtaBand, Eyebrow, SectionHeading } from "@/components/ui";
 import { PipelineVisual } from "@/components/PipelineVisual";
 
-const commitments = [
-  { value: "30 days", label: "Target to your first live workflow" },
-  { value: "Fixed price", label: "Milestone-based scopes, no open-ended billing" },
-  { value: "You own it", label: "Code, data and documentation stay with you" },
-];
-
 const capabilities = [
-  {
-    tag: "Ingestion",
-    title: "Document Extraction",
-    body: "Automate parsing of invoices, contracts and purchase orders. Fields are extracted, validated and routed straight into your financial ledgers.",
-  },
-  {
-    tag: "Execution",
-    title: "Pipeline Automation",
-    body: "Remove repetitive cross-department data entry with event-driven validation scripts and scheduled batch processing.",
-  },
-  {
-    tag: "Architecture",
-    title: "System Synchronization",
-    body: "Connect legacy databases, CRMs and ERPs to modern cloud reporting tools — without a major infrastructure overhaul.",
-  },
+  { number: "01", tag: "Document intelligence", title: "From document to usable data.", body: "Extract the fields that matter from invoices, purchase orders and contracts. Validate them before they reach your systems.", path: "Documents → Validation → Your database", href: "/services#document-parsing" },
+  { number: "02", tag: "Workflow automation", title: "Let the handoffs handle themselves.", body: "Connect repetitive tasks with event-driven pipelines, clear exception handling and a record of what happened.", path: "Trigger → Process → Human review", href: "/services#pipeline-orchestration" },
+  { number: "03", tag: "Systems integration", title: "Make your existing tools work together.", body: "Move information between your CRM, accounting software and databases, without replacing the systems your team knows.", path: "CRM ↔ Operations ↔ Reporting", href: "/services#integrations" },
 ];
-
 const steps = [
-  {
-    title: "Workflow Audit",
-    body: "We review friction points, volume logs and software dependencies to quantify what automation is actually worth to you.",
-  },
-  {
-    title: "Architecture Map",
-    body: "We draft data validation schemas and fallback rules tailored to your security and compliance requirements.",
-  },
-  {
-    title: "Staged Integration",
-    body: "Parallel test pipelines are benchmarked against verified historical records before anything touches production.",
-  },
-  {
-    title: "Production Run",
-    body: "Go live with end-to-end monitoring, written documentation and hands-on staff walkthroughs.",
-  },
+  { title: "Find the right workflow", body: "Review the manual work, software dependencies and business value. Start with one clearly defined problem." },
+  { title: "Design the handoffs", body: "Map your data, validation rules and human checkpoints before building the integration." },
+  { title: "Test before going live", body: "Compare a staged pipeline with verified records. Review exceptions and agree on success criteria." },
+  { title: "Launch with ownership", body: "Receive source code, documentation, monitoring and a walkthrough your team can use." },
+];
+const faqs = [
+  ["Do we need to replace our current software?", "The focus is connecting to the software you already use. We assess APIs, data access and integration constraints during the evaluation, before agreeing on a scope."],
+  ["Where should we start?", "Choose one repetitive workflow with clear inputs and outputs: invoice intake, record synchronization or a recurring reporting handoff. The evaluation helps determine feasibility and what to measure."],
+  ["What happens after I request an evaluation?", "An engineer reviews your request and replies within one business day. We clarify the workflow and arrange next steps together. The form requests a conversation; it does not reserve a calendar slot."],
+  ["Who owns the finished system?", "You retain the code, data and documentation. Engagements use defined milestones, with scope and pricing agreed before implementation."],
 ];
 
 export default function Home() {
-  return (
-    <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
-        <Container className="relative grid items-center gap-14 py-16 sm:py-24 lg:grid-cols-[1.1fr_1fr]">
-          <div>
-            <Eyebrow>Pragmatic Automation</Eyebrow>
-            <h1 className="mt-5 text-4xl font-light leading-[1.08] text-ink sm:text-5xl lg:text-6xl">
-              Production AI for <span className="font-bold">operational workflows</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
-              We integrate reliable AI and machine learning pipelines into the software you already use —
-              cutting manual admin work and aiming to return measurable staff hours within the first 30 days.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact">Request Operations Review</Button>
-              <Button href="/services" variant="secondary">
-                Review Services
-              </Button>
-            </div>
-            <p className="mt-6 text-sm text-muted">Based in Miramar, FL · Serving South Florida and remote US clients</p>
-          </div>
-          <PipelineVisual />
-        </Container>
-      </section>
+  return <>
+    <section className="hero-section">
+      <Container className="hero-layout">
+        <div className="hero-copy">
+          <Eyebrow>AI engineering for real operations</Eyebrow>
+          <h1>Less busywork.<br />More <span className="text-brand">forward.</span></h1>
+          <p className="hero-description">Production-ready AI, built into the tools you already use. Turn document intake, manual handoffs and disconnected data into workflows your team can rely on.</p>
+          <div className="hero-actions"><Button href="/contact">Request a Systems Evaluation</Button><a href="#capabilities" className="text-link">Explore what we build <span aria-hidden="true">↗</span></a></div>
+          <div className="hero-reassurance"><span className="status-dot" /> Direct access to your engineer <span className="reassurance-divider">/</span> You own the solution</div>
+        </div>
+        <PipelineVisual />
+      </Container>
+      <Container><div className="hero-footer"><p>Based in Miramar, Florida.<br /><strong>Built for South Florida &amp; remote US teams.</strong></p><p className="hero-footer-note">YOUR TOOLS. CONNECTED.<br /><span>Documents · CRM · Accounting · ERP</span></p></div></Container>
+    </section>
 
-      {/* Commitments (replaces unverified stats) */}
-      <section className="border-y border-line bg-surface">
-        <Container className="grid divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          {commitments.map((c) => (
-            <div key={c.value} className="px-2 py-8 sm:px-8">
-              <p className="font-display text-2xl font-semibold text-ink">{c.value}</p>
-              <p className="mt-1 text-sm text-muted">{c.label}</p>
-            </div>
-          ))}
-        </Container>
-      </section>
+    <section id="capabilities" className="section-space bg-white">
+      <Container>
+        <div className="section-intro"><SectionHeading eyebrow="What we build" title={<>Practical systems.<br />A clearer way to work.</>} /><p>Start where the friction is. We connect AI to a specific business process, with the validation, visibility and human oversight it needs.</p></div>
+        <div className="capability-grid">{capabilities.map(c=><article className="capability-card" key={c.number}><div className="capability-top"><span>{c.number}</span><span>{c.tag}</span></div><h3>{c.title}</h3><p>{c.body}</p><div className="capability-path">{c.path}</div><a href={c.href} className="text-link">Explore service <span aria-hidden="true">↗</span></a></article>)}</div>
+      </Container>
+    </section>
 
-      {/* Capabilities */}
-      <section className="py-20 sm:py-28">
-        <Container>
-          <SectionHeading
-            eyebrow="Core Capabilities"
-            title="Targeted workflow integrations"
-            intro="We replace manual handoffs with automated pipelines built on top of your existing databases, ERP systems and documentation tools."
-          />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {capabilities.map((c) => (
-              <article key={c.title} className="rounded-2xl border border-line bg-surface p-7 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-ink/5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-sky">{c.tag}</p>
-                <h3 className="mt-3 text-xl font-semibold text-ink">{c.title}</h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </section>
+    <section className="ownership-section section-space">
+      <Container className="ownership-grid">
+        <div><Eyebrow>Built to be operated</Eyebrow><h2>Automation should make work simpler.<br /><span>Including the work of managing it.</span></h2><p>Useful AI is more than a model. It is a system that fits your operations and stays understandable after launch.</p><Button href="/services" variant="light">See our approach</Button></div>
+        <div className="ownership-list">{[["01", "Human checkpoints", "Review exceptions and keep consequential decisions in the right hands."],["02","Defined milestones", "Agree on deliverables and fixed-price scope before the build begins."],["03","Your code. Your control.","Keep the source, documentation and runbooks your team needs to operate the system."]].map(([n,t,b])=><div key={n}><span>{n}</span><div><h3>{t}</h3><p>{b}</p></div></div>)}</div>
+      </Container>
+    </section>
 
-      {/* Delivery path */}
-      <section className="bg-surface py-20 sm:py-28">
-        <Container>
-          <SectionHeading eyebrow="Delivery Path" title="Four steps to deployment" />
-          <ol className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <li key={s.title} className="relative rounded-2xl border border-line bg-canvas p-7">
-                <span className="font-display text-sm font-semibold text-teal">0{i + 1}</span>
-                <h3 className="mt-3 text-lg font-semibold text-ink">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-10">
-            <Button href="/contact">Schedule Operational Review</Button>
-          </div>
-        </Container>
-      </section>
+    <section className="section-space process-section" id="approach"><Container><div className="section-intro"><SectionHeading eyebrow="From first conversation to production" title="One workflow. A clear path." /><p>A focused first integration gives you something concrete to evaluate, before expanding to the rest of your operations.</p></div><ol className="process-grid">{steps.map((s,i)=><li key={s.title}><span className="step-number">0{i+1}</span><h3>{s.title}</h3><p>{s.body}</p></li>)}</ol></Container></section>
 
-      <CtaBand
-        title="Modernize your operational throughput"
-        body="Book a preliminary systems evaluation. We'll review your data pipelines and identify where automation pays off first."
-        cta="Book a Systems Evaluation"
-      />
-    </>
-  );
+    <section className="section-space bg-white"><Container className="faq-layout"><SectionHeading eyebrow="A few things to know" title="Clear answers before we build." /><div className="faq-list">{faqs.map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></Container></section>
+    <CtaBand title="What could your team stop doing manually?" body="Tell us about one workflow. We’ll help you understand where AI fits, what it would take to build, and what to measure." cta="Request a Systems Evaluation" />
+  </>;
 }
