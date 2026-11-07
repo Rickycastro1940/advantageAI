@@ -37,9 +37,9 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-6" role="status">
-        <h3 className="text-lg font-semibold text-emerald-900">Request received</h3>
+        <h3 className="text-lg font-semibold text-emerald-900">Your evaluation request is received</h3>
         <p className="mt-1 text-sm text-emerald-800">
-          Thanks — an engineer will review your submission and reply {site.responseTime.toLowerCase()}.
+          Your request is with our team. An engineer will review it and reply {site.responseTime.toLowerCase()}.
         </p>
       </div>
     );
@@ -56,27 +56,10 @@ export function ContactForm() {
           Work email <span className="text-sky">*</span>
           <input name="email" type="email" required autoComplete="email" className={input} />
         </label>
-        <label className="block text-sm font-medium text-ink">
-          Direct phone
-          <input name="phone" type="tel" autoComplete="tel" className={input} />
-        </label>
-        <label className="block text-sm font-medium text-ink">
-          Company
-          <input name="company" autoComplete="organization" className={input} />
-        </label>
       </div>
 
       <label className="block text-sm font-medium text-ink">
-        Current software stack
-        <input
-          name="stack"
-          placeholder="e.g. QuickBooks, HubSpot, Google Workspace"
-          className={input}
-        />
-      </label>
-
-      <label className="block text-sm font-medium text-ink">
-        Primary workflow bottleneck <span className="text-sky">*</span>
+        What would you like to automate? <span className="text-sky">*</span>
         <textarea
           name="message"
           required
@@ -85,6 +68,15 @@ export function ContactForm() {
           className={input}
         />
       </label>
+
+      <details className="rounded-lg border border-line px-4 py-3">
+        <summary className="cursor-pointer text-sm font-medium text-ink">Add company details <span className="font-normal text-muted">(optional)</span></summary>
+        <div className="mt-4 space-y-4">
+          <label className="block text-sm font-medium text-ink">Company<input name="company" autoComplete="organization" className={input} /></label>
+          <label className="block text-sm font-medium text-ink">Direct phone<input name="phone" type="tel" autoComplete="tel" className={input} /></label>
+          <label className="block text-sm font-medium text-ink">Current software<input name="stack" placeholder="e.g. QuickBooks, HubSpot, Google Workspace" className={input} /></label>
+        </div>
+      </details>
 
       {/* Honeypot — hidden from people, catches bots */}
       <div className="hidden" aria-hidden="true">
@@ -107,9 +99,9 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-lg bg-ink px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-deep disabled:opacity-60"
+        className="w-full rounded-lg bg-brand px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-deep disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Submit Operations Query"}
+        {status === "sending" ? "Sending…" : "Request a Systems Evaluation"}
       </button>
     </form>
   );
