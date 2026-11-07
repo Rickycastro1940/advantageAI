@@ -5,14 +5,14 @@ import { site, telHref } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="bg-ink text-slate-300">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.4fr_1fr_1.2fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 lg:px-12 md:grid-cols-[1.4fr_1fr_1.2fr]">
         <div>
           <Logo inverted />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">{site.tagline}</p>
         </div>
 
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">Navigation</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-400">Navigation</h2>
           <ul className="mt-4 space-y-2 text-sm">
             {site.nav.map((item) => (
               <li key={item.href}>
@@ -25,7 +25,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">Direct inquiry</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-400">Direct inquiry</h2>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
               <a href={`mailto:${site.email}`} className="hover:text-white">
@@ -48,7 +48,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-6 text-xs text-slate-500 sm:flex-row sm:justify-between sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-slate-400 sm:flex-row sm:justify-between sm:px-8 lg:px-12">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <p>Production-grade automations in weeks, not quarters.</p>
         </div>

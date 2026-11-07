@@ -39,7 +39,7 @@ const governance = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="relative overflow-hidden">
+      <section id="integrations" className="relative overflow-hidden">
         <div className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
         <Container className="relative py-16 sm:py-24">
           <Eyebrow>Operational Automation</Eyebrow>
@@ -50,7 +50,7 @@ export default function ServicesPage() {
             We deploy measurable automated workflows that connect to your existing accounting, CRM and ERP software.
           </p>
           <div className="mt-8">
-            <Button href="/contact">Discuss Project Scope</Button>
+            <Button href="/contact">Request a Systems Evaluation</Button>
           </div>
         </Container>
       </section>
@@ -71,7 +71,7 @@ export default function ServicesPage() {
           <SectionHeading eyebrow="Core Modules" title="Targeted modules built for operational throughput" />
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
             {modules.map((m) => (
-              <article key={m.title} className="flex flex-col rounded-2xl border border-line bg-surface p-7">
+              <article key={m.title} id={m.tag === "Data Intake" ? "document-parsing" : m.tag === "Data Flow" ? "pipeline-orchestration" : undefined} className="flex flex-col rounded-2xl border border-line bg-surface p-7">
                 <p className="text-xs font-semibold uppercase tracking-widest text-sky">{m.tag}</p>
                 <h2 className="mt-3 text-xl font-semibold text-ink">{m.title}</h2>
                 <p className="mt-3 leading-relaxed text-ink-soft">{m.body}</p>
@@ -111,8 +111,8 @@ export default function ServicesPage() {
 
       <CtaBand
         title="Ready to map your automation requirements?"
-        body="Book a focused architecture discovery session with our engineering team."
-        cta="Book Discovery Session"
+        body="Tell us about your workflow. An engineer will reply with the next steps."
+        cta="Request a Systems Evaluation"
       />
     </>
   );

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/sora";
-import "@fontsource-variable/dm-sans";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";

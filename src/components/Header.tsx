@@ -12,11 +12,11 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/80 bg-canvas/85 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-line/80 bg-white/90 backdrop-blur">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
         <Logo />
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-6 md:flex" aria-label="Main">
           {site.nav.map((item) => {
             const active = pathname === item.href;
             return (
@@ -36,7 +36,7 @@ export function Header() {
             href="/contact"
             className="rounded-lg bg-ink px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-deep"
           >
-            Discuss Project Scope
+            Request an Evaluation
           </Link>
         </nav>
 
@@ -80,7 +80,7 @@ export function Header() {
             onClick={close}
             className="block rounded-lg bg-ink px-4 py-3 text-center text-sm font-medium text-white"
           >
-            Discuss Project Scope
+            Request an Evaluation
           </Link>
         </nav>
       )}

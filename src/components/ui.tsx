@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto max-w-6xl px-4 sm:px-6 ${className}`}>{children}</div>;
+  return <div className={`mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 ${className}`}>{children}</div>;
 }
 
 export function Eyebrow({ children }: { children: ReactNode }) {
@@ -18,14 +18,14 @@ type ButtonProps = { href: string; children: ReactNode; variant?: "primary" | "s
 
 export function Button({ href, children, variant = "primary" }: ButtonProps) {
   const styles = {
-    primary: "bg-ink text-white hover:bg-brand-deep",
+    primary: "bg-brand text-white hover:bg-brand-deep shadow-sm shadow-brand/15",
     secondary: "border border-line bg-surface text-ink hover:border-ink/30",
     light: "bg-white text-ink hover:bg-slate-100",
   }[variant];
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition ${styles}`}
+      className={`inline-flex items-center justify-center gap-2 min-h-12 rounded-lg px-5 py-3 text-sm font-semibold transition ${styles}`}
     >
       {children}
       <span aria-hidden="true">→</span>
@@ -55,9 +55,9 @@ export function SectionHeading({
 
 export function CtaBand({ title, body, cta }: { title: string; body: string; cta: string }) {
   return (
-    <section className="py-20">
+    <section className="cta-section">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl bg-brand-deep px-6 py-14 text-center sm:px-12">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-deep px-6 py-16 text-center sm:px-12">
           <div className="grid-bg pointer-events-none absolute inset-0 opacity-30 invert" />
           <div className="relative mx-auto max-w-2xl">
             <h2 className="text-3xl font-semibold text-white sm:text-4xl">{title}</h2>
