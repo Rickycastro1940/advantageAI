@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Button, Container, Eyebrow } from "@/components/ui";
+import { LogoMark } from "@/components/Logo";
 
 const CHAT_URL = "https://advantage-ai-solutions-api.vercel.app/chat";
 const suggestions = [
@@ -77,22 +78,19 @@ export function ServiceAssistant() {
     void ask(message);
   }
 
-  return <section id="ask-advantage" className="section-space border-t border-line" aria-labelledby="assistant-heading">
-    <Container className="grid items-start gap-10 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
-      <div>
+  return <section id="ask-advantage" className="assistant-showcase section-space border-t border-line" aria-labelledby="assistant-heading">
+    <Container>
+      <div className="assistant-intro">
         <Eyebrow>Ask Advantage</Eyebrow>
         <h2 id="assistant-heading" className="mt-4 text-3xl font-semibold text-ink sm:text-4xl">See where automation<br className="hidden sm:block" /> fits your work.</h2>
-        <p className="mt-5 max-w-md text-base leading-relaxed text-ink-soft">Ask about document intake, connected systems or your first project. Get a clear starting point, with links to the service information behind the answer.</p>
-        <div className="mt-7 flex items-start gap-3 rounded-xl border border-line bg-white p-4 text-sm leading-relaxed text-muted">
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" aria-hidden="true" />
-          <p>Answers are retrieved from Advantage’s reviewed public information. This assistant does not use a generative AI model.</p>
-        </div>
-        <div className="mt-7"><Button href="/contact" variant="secondary">Request a Systems Evaluation</Button></div>
+        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-soft">Ask about document intake, connected systems or your first project. Get a clear starting point, with links to the service information behind the answer.</p>
+        <div className="assistant-benefits" aria-label="How the assistant helps"><span>Explore your workflow</span><span>Read the sources</span><span>Talk to an engineer</span></div>
       </div>
-      <div className="min-w-0 overflow-hidden rounded-2xl border border-line bg-white shadow-sm">
-        <div className="flex items-center gap-3 border-b border-line px-5 py-5 sm:px-7">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand text-sm font-bold text-white" aria-hidden="true">A+</span>
+      <div className="assistant-card min-w-0 overflow-hidden rounded-2xl border border-line bg-white">
+        <div className="assistant-card-heading flex items-center gap-3 border-b border-line px-5 py-5 sm:px-7">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/5" aria-hidden="true"><LogoMark className="h-8 w-8" /></span>
           <div><h3 className="text-sm font-semibold text-ink">Advantage service assistant</h3><p className="mt-1 text-xs text-muted">Public information. Sources included.</p></div>
+          <span className="assistant-source-badge">Source-linked answers</span>
         </div>
         <div className="px-5 pt-5 sm:px-7">
           <p className="text-xs font-medium text-muted">Start with a question</p>
@@ -111,6 +109,11 @@ export function ServiceAssistant() {
             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">{answer.sources.map(source => <a key={source.url + source.title} href={source.url} className="text-xs font-semibold text-brand underline decoration-brand/30 underline-offset-4">{source.title} <span aria-hidden="true">↗</span></a>)}{!answer.supported && <a href="/contact" className="text-sm font-semibold text-brand underline underline-offset-4">Contact Advantage →</a>}</div>
           </> : <p className="text-sm leading-relaxed text-muted">Choose a question above or describe the workflow you want to improve.</p>}
         </div>
+      </div>
+      <div className="assistant-followthrough">
+        <p className="mx-auto max-w-xl text-xs leading-relaxed text-muted">Answers are retrieved from Advantage’s reviewed public information. This assistant does not use a generative AI model.</p>
+        <div className="mt-7"><Button href="/contact" variant="secondary">Request a Systems Evaluation</Button></div>
+        <p className="mt-3 text-xs text-muted">A real engineer. A focused conversation about your workflow.</p>
       </div>
     </Container>
   </section>;
