@@ -1,5 +1,6 @@
 import { Button, Container, CtaBand, Eyebrow, SectionHeading } from "@/components/ui";
 import { PipelineVisual } from "@/components/PipelineVisual";
+import { ServiceAssistant } from "@/components/ServiceAssistant";
 
 const capabilities = [
   { number: "01", tag: "Document intelligence", title: "From document to usable data.", body: "Extract the fields that matter from invoices, purchase orders and contracts. Validate them before they reach your systems.", path: "Documents → Validation → Your database", href: "/services#document-parsing" },
@@ -41,6 +42,8 @@ export default function Home() {
         <div className="capability-grid">{capabilities.map(c=><article className="capability-card" key={c.number}><div className="capability-top"><span>{c.number}</span><span>{c.tag}</span></div><h3>{c.title}</h3><p>{c.body}</p><div className="capability-path">{c.path}</div><a href={c.href} className="text-link">Explore service <span aria-hidden="true">↗</span></a></article>)}</div>
       </Container>
     </section>
+
+    <ServiceAssistant />
 
     <section className="ownership-section section-space">
       <Container className="ownership-grid">
