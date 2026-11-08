@@ -92,7 +92,7 @@ section[id],article[id] { scroll-margin-top:110px; }
 .hero-footer strong { color:#394a64; font-weight:500; }
 .hero-footer-note { text-align:right; font-size:10px; letter-spacing:.12em; }
 .hero-footer-note span { font-size:12px; letter-spacing:0; color:#394a64; }
-.workflow-visual { min-width:0; background:#fff; border:1px solid #dce4f0; border-radius:18px; box-shadow:0 24px 60px -20px #1f3d7d38,0 4px 12px #172c4e06; overflow:hidden; transform:none; }
+.workflow-visual { width:100%; min-width:0; background:#fff; border:1px solid #dce4f0; border-radius:18px; box-shadow:0 24px 60px -20px #1f3d7d38,0 4px 12px #172c4e06; overflow:hidden; transform:none; }
 .workflow-topbar { display:flex; align-items:center; gap:9px; padding:16px 20px; background:#101e37; color:#ced9ea; font-size:9px; letter-spacing:.13em; }
 .workflow-mark { border-radius:5px; color:white; width:23px; height:23px; display:flex; justify-content:center; align-items:center; background:#245be7; font-size:13px; font-weight:700; letter-spacing:-.1em; }
 .workflow-mark span { font-size:10px; }
