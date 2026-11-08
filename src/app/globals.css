@@ -187,3 +187,30 @@ h2 { line-height:1.22; }
   .workflow-connector::before,.extract-node { animation:none; }
   .workflow-connector::before { display:none; }
 }
+
+/* A larger brand signature and a centered, focused service assistant. */
+.site-header>a { flex-shrink:0; }
+.site-header a[aria-label="Advantage AI Solutions home"] { gap:12px; flex-shrink:0; }
+.site-header a[aria-label="Advantage AI Solutions home"] svg { width:52px; height:52px; }
+.site-header a[aria-label="Advantage AI Solutions home"]>span { font-size:21px; letter-spacing:-.035em; line-height:1.08; }
+.site-header nav[aria-label="Main"] a[aria-current="page"] { text-decoration:underline; text-decoration-color:#245be7; text-decoration-thickness:2px; text-underline-offset:8px; }
+.assistant-showcase { position:relative; isolation:isolate; background:radial-gradient(ellipse at 50% 35%,#e8efff 0,transparent 65%),#f7f9fc; }
+.assistant-showcase::before { content:""; pointer-events:none; position:absolute; inset:0; z-index:-1; opacity:.28; background-image:radial-gradient(#92a9d0 .7px,transparent .7px); background-size:24px 24px; mask-image:linear-gradient(transparent,#000 30%,transparent 85%); }
+.assistant-intro { max-width:720px; margin:0 auto 36px; text-align:center; }
+.assistant-intro h2 { letter-spacing:-.045em; line-height:1.2; }
+.assistant-benefits { display:flex; justify-content:center; flex-wrap:wrap; gap:10px 22px; margin-top:25px; color:#5f6e83; font-size:11px; }
+.assistant-benefits span { display:inline-flex; align-items:center; gap:7px; }
+.assistant-benefits span::before { content:""; width:4px; height:4px; border-radius:50%; background:#7190cd; }
+.assistant-card { position:relative; width:100%; max-width:800px; margin:0 auto; box-shadow:0 28px 70px -30px #284f9c35,0 4px 12px #172c4e05; }
+.assistant-card::before { content:""; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#719bff,transparent); }
+.assistant-card-heading { background:linear-gradient(110deg,#fff,#f8faff); }
+.assistant-source-badge { margin-left:auto; flex-shrink:0; border:1px solid #dce6f7; border-radius:20px; padding:5px 9px; color:#536c95; background:#f7faff; font-size:10px; }
+.assistant-followthrough { margin:25px auto 0; text-align:center; }
+@media(max-width:639px) {
+  .site-header a[aria-label="Advantage AI Solutions home"] { gap:10px; }
+  .site-header a[aria-label="Advantage AI Solutions home"] svg { width:44px; height:44px; }
+  .site-header a[aria-label="Advantage AI Solutions home"]>span { font-size:18px; }
+  .assistant-intro { margin-bottom:28px; }
+  .assistant-source-badge { display:none; }
+  .assistant-benefits { gap:10px 14px; font-size:10px; }
+}
