@@ -50,13 +50,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to content
         </a>
-        <div className="announce-bar">
-          Based in <strong>{site.location.city}, {site.location.region}</strong>
-          {" · "}An engineer replies within one business day
-          {" · "}
-          <Link href="/contact">Request a systems evaluation</Link>
+        <div className="sticky top-0 z-40">
+          <div className="announce-bar">
+            Based in <strong>{site.location.city}, {site.location.region}</strong>
+            {" · "}An engineer replies within one business day
+            {" · "}
+            <Link href="/contact">Request a systems evaluation</Link>
+          </div>
+          <Header />
         </div>
-        <Header />
         <main id="main" className="flex-1">
           {children}
         </main>

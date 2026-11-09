@@ -12,7 +12,7 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="site-header sticky top-0 z-40 border-b border-line/80 bg-white/90 backdrop-blur">
+    <header className="site-header border-b border-line/80 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
         <Logo />
 
