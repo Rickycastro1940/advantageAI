@@ -2,6 +2,16 @@ import { Button, Container, CtaBand, Eyebrow, SectionHeading } from "@/component
 import { PipelineVisual } from "@/components/PipelineVisual";
 import { ServiceAssistant } from "@/components/ServiceAssistant";
 
+const problems = [
+  ["01", "Invoice intake", "/services#document-parsing"],
+  ["02", "Purchase orders", "/services#document-parsing"],
+  ["03", "Contract fields", "/services#document-parsing"],
+  ["04", "CRM sync", "/services#pipeline-orchestration"],
+  ["05", "Accounting handoff", "/services#pipeline-orchestration"],
+  ["06", "Exception review", "/contact"],
+  ["07", "Audit trail", "/services#pipeline-orchestration"],
+  ["08", "Operational forecasts", "/services#forecasting"],
+] as const;
 const capabilities = [
   { number: "01", tag: "Document intelligence", title: "From document to usable data.", body: "Extract the fields that matter from invoices, purchase orders and contracts. Validate them before they reach your systems.", path: "Documents → Validation → Your database", href: "/services#document-parsing" },
   { number: "02", tag: "Workflow automation", title: "Let the handoffs handle themselves.", body: "Connect repetitive tasks with event-driven pipelines, clear exception handling and a record of what happened.", path: "Trigger → Process → Human review", href: "/services#pipeline-orchestration" },
@@ -34,6 +44,20 @@ export default function Home() {
         <PipelineVisual />
       </Container>
       <Container><div className="hero-footer"><p>Based in Miramar, Florida.<br /><strong>Built for South Florida &amp; remote US teams.</strong></p><p className="hero-footer-note">YOUR TOOLS. CONNECTED.<br /><span>Documents · CRM · Accounting · ERP</span></p></div></Container>
+    </section>
+
+    <section className="section-space bg-white" id="problems">
+      <Container>
+        <div className="section-intro">
+          <SectionHeading eyebrow="Where to start" title={<>What should your team<br />stop doing manually?</>} />
+          <p>Pick one repetitive handoff. We connect it to the software you already run, with validation and a person on the exceptions.</p>
+        </div>
+        <div className="problem-grid">
+          {problems.map(([n, label, href]) => (
+            <a key={n} href={href}><small>{n}</small><strong>{label}</strong></a>
+          ))}
+        </div>
+      </Container>
     </section>
 
     <section id="capabilities" className="section-space bg-white">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -49,6 +50,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         >
           Skip to content
         </a>
+        <div className="announce-bar">
+          Based in <strong>{site.location.city}, {site.location.region}</strong>
+          {" · "}An engineer replies within one business day
+          {" · "}
+          <Link href="/contact">Request a systems evaluation</Link>
+        </div>
         <Header />
         <main id="main" className="flex-1">
           {children}

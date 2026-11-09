@@ -44,7 +44,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please add your name, a valid email and your workflow bottleneck." }, { status: 422 });
   }
 
-  const { CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = process.env;
+  const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || site.email;
+  const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Advantage AI Website <website@advantageaisolutions.pro>";
   // Accept the lowercase name too (the Vercel variable was created as resend_api_key).
   const RESEND_API_KEY = process.env.RESEND_API_KEY || process.env.resend_api_key;
   if (!RESEND_API_KEY || !CONTACT_TO_EMAIL) {

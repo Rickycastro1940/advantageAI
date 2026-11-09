@@ -71,7 +71,7 @@ export default function ServicesPage() {
           <SectionHeading eyebrow="Core Modules" title="Targeted modules built for operational throughput" />
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
             {modules.map((m) => (
-              <article key={m.title} id={m.tag === "Data Intake" ? "document-parsing" : m.tag === "Data Flow" ? "pipeline-orchestration" : undefined} className="flex flex-col rounded-2xl border border-line bg-surface p-7">
+              <article key={m.title} id={m.tag === "Data Intake" ? "document-parsing" : m.tag === "Data Flow" ? "pipeline-orchestration" : "forecasting"} className="flex flex-col rounded-2xl border border-line bg-surface p-7">
                 <p className="text-xs font-semibold uppercase tracking-widest text-sky">{m.tag}</p>
                 <h2 className="mt-3 text-xl font-semibold text-ink">{m.title}</h2>
                 <p className="mt-3 leading-relaxed text-ink-soft">{m.body}</p>

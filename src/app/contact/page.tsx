@@ -22,7 +22,7 @@ export default function ContactPage() {
       <div className="rounded-2xl border border-line bg-white p-6 shadow-xl shadow-ink/5 sm:p-9">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-teal">Systems evaluation</p>
         <h2 className="mt-3 text-2xl font-semibold">What would you like to improve?</h2>
-        <p className="mt-3 text-sm leading-relaxed text-muted">Three required fields. No technical specification needed.</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted">Three required fields. No technical specification needed. Your note is emailed to <a className="underline underline-offset-4" href={`mailto:${site.email}`}>{site.email}</a>.</p>
         <ContactForm />
         <p className="mt-5 text-xs leading-relaxed text-muted">This is an evaluation request, not a confirmed appointment. Please don’t include passwords, customer records or confidential files. We can arrange an NDA before reviewing proprietary information.</p>
       </div>
