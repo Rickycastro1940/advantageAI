@@ -10,6 +10,14 @@ npm run dev        # http://localhost:3000
 npm run build      # production build
 ```
 
+For the Python scraper dependencies, create a virtual environment and install the project:
+
+```bash
+python -m venv .venv
+.venv/bin/python -m pip install -e .
+.venv/bin/python pipeline.py
+```
+
 ## Where to edit
 
 | What | File |
