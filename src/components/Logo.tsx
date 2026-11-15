@@ -3,8 +3,8 @@ import Link from "next/link";
 export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <path d="M24 4 44 22v9L24 13 4 31v-9z" fill="#1f5fbf" />
-      <path d="M24 19 44 37v9L24 28 4 46v-9z" fill="#1c3c6d" />
+      <path d="M24 4 44 22v9L24 13 4 31v-9z" fill="#4ade80" />
+      <path d="M24 19 44 37v9L24 28 4 46v-9z" fill="#22a65a" />
     </svg>
   );
 }
