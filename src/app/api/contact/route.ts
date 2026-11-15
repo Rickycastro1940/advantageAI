@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { site } from "@/lib/site";
+import { intake, readLimitedBody } from "@/lib/lead-intake";
 
 /**
  * Contact form handler.
@@ -23,7 +24,7 @@ function escapeHtml(s: string) {
 
 export async function POST(req: Request) {
   const contentType = req.headers.get("content-type") || "";
-  if (!contentType.toLowerCase().includes("application/json")) {
+  if (contentType.split(";")[0].trim().toLowerCase() !== "application/json") {
     return NextResponse.json({ error: "Expected JSON." }, { status: 415 });
   }
   if (Number(req.headers.get("content-length") || 0) > MAX_BYTES) {
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
   }
   let body: Record<string, unknown>;
   try {
-    const raw = await req.text();
+    const raw = await readLimitedBody(req, MAX_BYTES);
     if (new TextEncoder().encode(raw).length > MAX_BYTES) {
       return NextResponse.json({ error: "Request too large." }, { status: 413 });
     }
@@ -40,7 +41,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid request." }, { status: 400 });
     }
     body = parsed as Record<string, unknown>;
-  } catch {
+  } catch (error) {
+    if (error instanceof Error && error.message === "Request too large") return NextResponse.json({ error: "Request too large." }, { status: 413 });
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
@@ -58,6 +60,20 @@ export async function POST(req: Request) {
 
   if (!lead.name || !lead.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
     return NextResponse.json({ error: "Please add your name, a valid email and your workflow bottleneck." }, { status: 422 });
+  }
+
+  if (process.env.VERCEL_ENV === "preview") {
+    try {
+      // Vercel overwrites x-vercel-forwarded-for at its trusted ingress.
+      const ip = req.headers.get("x-vercel-forwarded-for")?.split(",")[0].trim() || "unknown";
+      const result = await intake(lead, ip, process.env);
+      if (result.status === 429) return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429, headers: { "Retry-After": String(result.retryAfter) } });
+      if (result.status !== 200) return NextResponse.json({ error: "We couldn't send your message right now.", inquiryId: result.inquiryId }, { status: result.status });
+      return NextResponse.json({ ok: true, inquiryId: result.inquiryId });
+    } catch {
+      console.error("[contact] Preview intake dependency unavailable");
+      return NextResponse.json({ error: "Our form is temporarily unavailable. Please contact us directly." }, { status: 503 });
+    }
   }
 
   const inquiryId = crypto.randomUUID();
