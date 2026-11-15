@@ -70,8 +70,10 @@ export async function POST(req: Request) {
       if (result.status === 429) return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429, headers: { "Retry-After": String(result.retryAfter) } });
       if (result.status !== 200) return NextResponse.json({ error: "We couldn't send your message right now.", inquiryId: result.inquiryId }, { status: result.status });
       return NextResponse.json({ ok: true, inquiryId: result.inquiryId });
-    } catch {
-      console.error("[contact] Preview intake dependency unavailable");
+    } catch (error) {
+      const known = ["Missing preview intake configuration", "Rate limiting unavailable", "Invalid rate limit response", "Inquiry persistence unavailable", "Invalid database URL", "Invalid Redis URL"];
+      const reason = error instanceof Error && known.includes(error.message) ? error.message : "Upstream request failed";
+      console.error("[contact] Preview intake dependency unavailable", { reason });
       return NextResponse.json({ error: "Our form is temporarily unavailable. Please contact us directly." }, { status: 503 });
     }
   }
