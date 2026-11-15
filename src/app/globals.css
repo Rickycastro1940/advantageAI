@@ -228,3 +228,68 @@ h2 { line-height:1.22; }
   .assistant-source-badge { display:none; }
   .assistant-benefits { gap:10px 14px; font-size:10px; }
 }
+
+/* Green and black brand palette. Layout and application behavior are retained. */
+:root {
+ color-scheme:dark;
+ --color-canvas:#070b09; --color-surface:#101813;
+ --color-ink:#eef7f0; --color-ink-soft:#c3d2c7; --color-muted:#a2b5a8;
+ --color-line:#2c4033; --color-brand:#4ade80; --color-brand-deep:#86efac;
+ --color-sky:#4ade80; --color-teal:#86efac;
+}
+body { background:#070b09; color:#eef7f0; }
+.bg-white,.bg-white\/90 { background-color:#101813; }
+.site-header { background:rgb(7 11 9 / .95); border-color:#2c4033; }
+.announce-bar,.workflow-topbar,footer,.ownership-section,.bg-ink { background:#030705; color:#eef7f0; }
+.announce-bar a,.text-link,.capability-top>span:first-child,.node-check,.branch-node span,.faq-list summary span { color:#4ade80; }
+.announce-bar strong { color:#fff; }
+.hero-section { background:radial-gradient(ellipse at 92% 15%,#123523 0,transparent 58%),#070b09; }
+.assistant-showcase { background:radial-gradient(ellipse at 50% 35%,#143323 0,transparent 65%),#070b09; }
+.assistant-showcase::before { background-image:radial-gradient(#4ade80 .7px,transparent .7px); opacity:.14; }
+.hero-description,.hero-reassurance,.hero-footer,.hero-footer strong,.hero-footer-note span,
+.section-intro>p,.capability-card>p,.process-grid p,.faq-list details p,.contact-steps p,
+.workflow-heading p,.document-preview div>span,.extract-node div>span,.branch-tag,.workflow-bottom,
+.assistant-benefits,.capability-top { color:#b5c9bc; }
+.hero-footer,.capability-path,.process-grid li,.faq-list details,.faq-list details:first-child,
+.workflow-bottom,.ownership-list>div,.ownership-list>div:first-child { border-color:#2c4033; }
+.workflow-visual,.document-preview,.branch-node { background:#101813; border-color:#2c4033; }
+.workflow-visual,.assistant-card { box-shadow:0 24px 70px -25px #000a; }
+.workflow-canvas { background-image:radial-gradient(#294535 1px,transparent 1px); }
+.workflow-topbar,.workflow-heading h2,.document-preview strong,.extract-node strong,.branch-node strong { color:#eef7f0; }
+.workflow-mark,.node-icon { background:#4ade80; color:#031208; }
+.document-icon,.file-tag,.step-number,.contact-steps li>span { background:#173724; color:#86efac; }
+.extract-node { background:#122c1d; border-color:#4ade80; }
+.workflow-connector { background:#4a825d; }
+.workflow-connector::after { border-top-color:#4a825d; }
+.workflow-connector::before,.status-dot { background:#4ade80; }
+.demo-label { border-color:#467451; color:#b5c9bc; }
+.capability-card { background:linear-gradient(150deg,#101813,#0b130e); border-color:#2c4033; }
+.capability-card:hover,.capability-card:focus-within { border-color:#4ade80; box-shadow:0 12px 30px -16px #4ade8026; }
+.capability-path { color:#86efac; }
+.ownership-section h2 span,.ownership-section p { color:#b5c9bc; }
+.ownership-section .inline-flex.uppercase,.ownership-list>div>span { color:#86efac; }
+.ownership-section .inline-flex.uppercase span { background:#4ade80; }
+.faq-list summary { color:#eef7f0; }
+.cta-section { background:#0c1810; }
+.problem-grid { border-color:#2c4033; }
+.problem-grid a { background:#101813; border-color:#2c4033; color:#eef7f0; }
+.problem-grid a:hover { background:#173724; color:#86efac; }
+.problem-grid small { color:#4ade80; }
+.assistant-card-heading { background:linear-gradient(110deg,#101813,#15271b); }
+.assistant-card::before { background:linear-gradient(90deg,transparent,#4ade80,transparent); }
+.assistant-source-badge { color:#b5e9c5; background:#15271b; border-color:#365640; }
+.assistant-benefits span::before { background:#4ade80; }
+a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#4ade80; }
+.problem-grid a:focus-visible { outline-color:#4ade80; }
+.site-header nav[aria-label="Main"] a[aria-current="page"] { text-decoration-color:#4ade80; }
+.bg-brand,.bg-brand-deep { color:#031208; }
+.bg-brand:hover { background:#86efac; color:#031208; }
+header a.bg-ink { background:#4ade80; color:#031208; }
+header a.bg-ink:hover { background:#86efac; }
+input,textarea,select { background:#0b130e; color:#eef7f0; border-color:#385341; }
+input::placeholder,textarea::placeholder { color:#92a999; }
+.bg-emerald-50 { background:#12321e; }
+.text-emerald-900,.text-emerald-800 { color:#bbf7d0; }
+.bg-red-50 { background:#361515; }
+.text-red-700 { color:#fecaca; }
+@keyframes workflow-validation { 0%,100% { box-shadow:0 0 0 0 rgb(74 222 128 / 0); } 50% { box-shadow:0 0 0 4px rgb(74 222 128 / .12); } }
