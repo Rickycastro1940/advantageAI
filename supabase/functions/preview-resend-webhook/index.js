@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
  const allowed=["email.sent","email.delivered","email.delivery_delayed","email.bounced","email.complained","email.failed","email.suppressed"];
  if(!allowed.includes(event.type))return new Response(null,{status:204});
  if(typeof event.data?.email_id!=="string"||!event.created_at||!Number.isFinite(Date.parse(event.created_at)))return new Response(null,{status:400});
- const url=Deno.env.get("SUPABASE_URL")!;const key=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+ const url=Deno.env.get("SUPABASE_URL");const key=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
  try {
  // Ignore unrelated account email events. Resend can emit production events to
  // every webhook; only preview inquiries in this isolated database qualify.
