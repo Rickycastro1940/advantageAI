@@ -11,7 +11,7 @@ Scope: green/black website, lead intake hardening, distributed rate limiting, du
 4. The existing intake and Vercel webhook handler explicitly require VERCEL_ENV=preview. Merging PR #6 alone will NOT activate production database intake. Production activation must use an explicit reviewed feature flag and separate production credentials; do not simply remove the environment guard or reuse preview secrets.
 5. The current public Edge Function is preview-only storage. A separate production receiver and signing secret are required; production events must not be routed into the preview database.
 
-## Proposed retention policy — approval requested
+## Approved retention policy — November 23, 2026
 
 | Record | Proposed period | Disposal rule |
 |---|---|---|
@@ -21,11 +21,11 @@ Scope: green/black website, lead intake hardening, distributed rate limiting, du
 | Won customer | Transfer necessary information to approved client records | Do not use the inquiry store as a permanent contract/accounting archive |
 | Conversion reports | 12 months of aggregated counts and values | Remove direct identifiers; report small groups cautiously |
 
-Periods are proposed operating choices, not statements of legal retention requirements. An operator records any explicit hold, purpose, owner and next review date. Before activation, implement an idempotent daily purge with dry-run mode, bounded batches, exclusion of unresolved/held records, count-only audit logs, and restore/backup-expiry documentation. Approval of periods is not permission to delete production data immediately.
+Ricardo approved these operating periods and accepted daily reconciliation ownership on November 23, 2026. These are operating choices, not statements of legal retention requirements. An operator records any explicit hold, purpose, owner and next review date. Before activation, implement an idempotent daily purge with dry-run mode, bounded batches, exclusion of unresolved/held records, count-only audit logs, and restore/backup-expiry documentation. Approval of periods is not permission to delete production data immediately.
 
 ## Reconciliation procedure
 
-Owner: Ricardo until another operator is assigned. Daily review of queued and send_unknown older than 15 minutes, send_failed, bounced, complained, suppressed, and records lacking a terminal event after 24 hours.
+Owner: Ricardo, confirmed November 23, 2026. Daily review of queued and send_unknown older than 15 minutes, send_failed, bounced, complained, suppressed, and records lacking a terminal event after 24 hours.
 
 1. Look up the inquiry UUID in the Resend subject and provider logs. If provider_email_id exists, use it as the primary correlation key.
 2. If Resend accepted the email, record its ID and actual observed state; do not resend. Replay a genuine signed provider webhook if available.
@@ -36,8 +36,8 @@ Owner: Ricardo until another operator is assigned. Daily review of queued and se
 
 ## Release sequence — execute only after explicit approval
 
-1. Record approval of retention periods, operational owner, release scope and rollback window on the PR.
-2. Implement and preview-test retention enforcement, reconciliation audit fields, and an explicit production activation flag defaulting OFF. These are blockers to full production lead-storage activation, not completed features.
+1. Retention periods and daily operator are approved; separately approve the final release scope, commit SHA, production activation, and rollback window on the PR.
+2. Apply and preview-test the additive audit migration and bounded dry-run retention sweep. A daily schedule, backup expiry/restore evidence, and an explicit production activation flag defaulting OFF still need implementation and verification before full production lead storage.
 3. Provision isolated production Supabase/Upstash resources and a production-specific Resend receiver/signing secret. Record cost approval before any paid provisioning. Keep existing production Resend send credentials and domain settings.
 4. Run migration dry-run and authorization checks, apply additive schema, verify RLS and public-client denial. Keep the intake feature flag OFF.
 5. Approve the exact final commit SHA and preview evidence. Merge only on Ricardo's explicit approval; never enable auto-merge.
@@ -67,3 +67,7 @@ This defines the tracking backlog, not an already-running dashboard. Avoid adver
 Preserve first-touch attribution when later sessions revisit; never store raw arbitrary URLs or query strings that may contain personal data. Use an allowlist and length limits for UTM values; internal cost rates stay server-only. Bookings require a confirmed scheduling event, not merely a calendar-link click. Track amounts in integer minor units with currency; do not combine currencies without an explicit reporting conversion. Fixed-fee work uses earned revenue and actual costs for the same reporting period, with estimates shown separately. Collect source categories first; obtain a separate decision before adding cookies or third-party tracking.
 
 Suggested initial scorecard: valid inquiries, qualified inquiries, consultations booked/attended, proposals sent, won/lost/open proposals, contracted value, earned revenue, direct cost and delivery margin. Start weekly with an owner-reviewed ledger; automate CRM/calendar integrations after the process is reliable. No new calendar, CRM, analytics, or marketing integrations are authorized by this document alone.
+
+## November 23 implementation status
+
+The draft branch includes `database/preview-reconciliation-audit.sql` and `database/preview-retention-policy.sql`. The latter defaults to dry-run, caps each batch at 500, excludes unresolved or held records, retains recent delivery events, and writes count-only run records. The isolated preview project was restored from inactive status; migrations, authorization checks, scheduled execution, and deletion boundary tests must be completed before claiming enforcement. The 12-month aggregate reporting store is a separate post-launch measurement task; no customer value data has been fabricated. PR #6 remains draft; production is unchanged.
