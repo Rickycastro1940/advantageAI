@@ -13,7 +13,7 @@ The function defaults to dry run, limits each invocation to 1–500 inquiries pl
 
 ## Checks performed
 
-- Existing preview count before and after rollback test: 7 inquiries and 15 delivery events.
+- Existing preview count before and after rollback test: 7 inquiries and 15 delivery events. All seven retain the migration default of `pending` reconciliation; six show a latest delivered event and one is the labeled synthetic bounced case from prior webhook testing. No blanket resolution was applied.
 - Dry run with a 100-row cap: zero inquiry candidates and zero event candidates; one count-only dry-run record persisted. No live preview row was deleted.
 - A transaction inserted synthetic records at 91 and 89 days, held and unresolved records, late and 29/31-day events, then ran dry-run and execute modes. Assertions passed: only the eligible 91-day closed/resolved inquiry and two eligible event rows were removed inside the transaction; held, unresolved, 89-day, and recent-event cases remained. A second execution removed nothing. The transaction was rolled back; no synthetic rows or deletion audit remained.
 - Anonymous/authenticated SELECT denied on inquiry and audit tables. Anonymous EXECUTE denied on the retention function; service_role EXECUTE granted.
